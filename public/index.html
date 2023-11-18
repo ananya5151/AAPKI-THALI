@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Add this CSS for the heading bubble */
+        .bubble-heading {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #641b1b;
+            color: #fff;
+            padding: 15px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 2;
+            cursor: pointer; /* Add this line to make it look clickable */
+        }
+        .bubble-heading:hover{
+            background-color: darkolivegreen;
+        }
+        /* Add this CSS for the hamburger menu */
+        .menu-icon {
+            cursor: pointer;
+            display: block;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+
+        .menu-icon div {
+            width: 35px;
+            height: 5px;
+            background-color: #fbfafa;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .menu-icon:hover div {
+            background-color: #555;
+        }
+
+        .sidenav {
+            height: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #f3f3f3;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #8e4747;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+    </style>
+    <title>AAPKI THALI</title>
+</head>
+
+<body>
+    <button class="bubble-heading" onclick="openStatePage()">
+        <h1>AAPKI THALI</h1>
+    </button>
+    <div class="menu-icon" onclick="openNav()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="sidenav" id="mySidenav">        
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Places</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <!--===============Banner================-->
+    <section class="banner">
+        <div class="banner-text-item">
+            <div class="banner-heading">
+                <h1><b>A State-Centric Recipe Experience</b></h1>
+            </div>
+                
+            <input type="text" list="mylist" id="stateInput" placeholder="SELECT YOUR STATES"/>
+            <datalist id="mylist">
+                <option>JAMMU AND KASHMIR</option>
+                <option>LADAKH</option>
+                <option>HIMACHAL PRADESH</option>
+                <option>PUNJAB</option>
+                <option>HARYANA</option>
+                <option>UTTARAKHAND</option>
+                <option>UTTAR PRADESH</option>
+                <option>BIHAR</option>
+                <option>JHARKHAND</option>
+                <option>WEST BENGAL</option>
+                <option>SIKKIM</option>
+                <option>ASSAM</option>
+                <option>ARUNACHAL PRADESH</option>
+                <option>NAGALAND</option>
+                <option>MANIPUR</option>
+                <option>MIZORAM</option>
+                <option>TRIPURA</option>
+                <option>MEGHALAYA</option>
+                <option>ODISHA</option>
+                <option>CHHATTISGARH</option>
+                <option>MADHYA PRADESH</option>
+                <option>GUJARAT</option>
+                <option>RAJASTHAN</option>
+                <option>MAHARASHTRA</option>
+                <option>GOA</option>
+                <option>KARNATAKA</option>
+                <option>ANDHRA PRADESH</option>
+                <option>TELANGANA</option>
+                <option>TAMIL NADU</option>
+                <option>KERALA</option>
+                <!-- Add all other states here -->
+            </datalist>
+        </div>
+    </section>
+
+    <!--==============Places===================-->
+    <section class="places">
+        <div class="places-text">
+            <small>AAPKI THALI</small>
+            <h2>Delicious Discoveries: Taste of India</h2>
+        </div>
+
+        <!--===========About Us===============-->
+        <section class="about">
+            <div class="about-img">
+                <img src="https://source.unsplash.com/900x900/?indian food">
+            </div>
+            <div class="about-text">
+                <small>ABOUT US</small>
+                <h2>AAPKI THALI</h2>
+                <p><b>Welcome to Culinary Explorer</b></p>
+
+                <label><input type="checkbox" checked><b>SELECT YOUR FAVOURITE STATE</b></label>
+                <label><input type="checkbox" checked><b>SELECT THE FAMOUS FOOD</b></label>
+                <label><input type="checkbox" checked><b>GET RECIPE AND INGREDIENTS ON SINGLE CLICK</b></label>
+                <label><input type="checkbox" checked><b>KNOW ABOUT HOW IT BECOMES FAMOUS</b></label>
+                <a href="#">KNOW MORE</a>
+            </div>
+        </section>
+
+        <!--===========Footer=================-->
+        <div class="footer">
+            <div class="links"></div>
+            <div class="links"></div>
+            <div class="links">
+                <h3>Support</h3>
+                <ul>
+                    <li>HELPLINE : 1800113921</li>
+                    <li>PHONE : 011-23413494</li>
+                    <li>Report your issue</li>
+                    <li>Terms & Conditions</li>
+                    <li>Privacy Policy</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            function openStatePage() {
+                var selectedState = document.getElementById('stateInput').value;
+    
+                // Directly mention the HTML file for the selected state
+                var fileName = selectedState.replace(/\s+/g, '').toLowerCase() + '.html';
+    
+                // Open a new window with the specified HTML file
+                var newWindow = window.open(fileName, '_blank');
+    
+                // Check if the new window was successfully opened
+                if (!newWindow) {
+                    alert('Popup blocked! Please allow popups for this website.');
+                }
+            }
+        </script>
+    </section>
+</body>
+
+</html>
